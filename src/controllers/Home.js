@@ -12,10 +12,9 @@ class HomeController {
         height: 1.43,
 
       });
-      res.json(newStudent);
-      return;
+      return res.json(newStudent);
     } catch (error) {
-      res.status(400).json(error.errors.map(err => err.message));
+      return res.status(400).json(error.errors.map(err => err.message));
     }
   }
 }
