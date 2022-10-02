@@ -1,13 +1,21 @@
 import Student from '../models/Student';
+import Photo from '../models/Photo';
 
 class StudentController {
   async index(req, res) {
     try {
-      const students = await Student.findAll();
+      const students = await Student.findAll({
+        attributes: ['id', 'name', 'surname', 'email', 'age', 'weight', 'height'],
+        order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+        include: {
+          model: Photo,
+          attributes: ['id', 'filename'],
+        },
+      });
       return res.json(students);
     } catch (err) {
       return res.status(400).json({
-        errors: err.errors.map(e => e.message),
+        error: [err.code],
       });
     }
   }
@@ -34,19 +42,22 @@ class StudentController {
         });
       }
 
-      const student = await Student.findByPk(id);
+      const student = await Student.findByPk(id, {
+        attributes: ['id', 'name', 'surname', 'email', 'age', 'weight', 'height'],
+        order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+        include: {
+          model: Photo,
+          attributes: ['id', 'filename'],
+        },
+      });
+
       if (!student) {
         return res.status(400).json({
-          errors: ['Student not exists'],
+          errors: ["Student don't exists"],
         });
       }
-      const {
-        name, surname, email, age,
-      } = student;
 
-      return res.json({
-        id, name, surname, email, age,
-      });
+      return res.json(student);
     } catch (err) {
       return res.status(400).json({
         errors: err.errors.map(error => error.message),

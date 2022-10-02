@@ -64,11 +64,6 @@ class UserController {
   async delete(req, res) {
     try {
       const user = await User.findByPk(req.userId);
-      if (!user) {
-        return res.status(400).json({
-          errors: ['id not sent'],
-        });
-      }
 
       if (!user) {
         return res.status(400).json({
