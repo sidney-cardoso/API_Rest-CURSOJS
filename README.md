@@ -1,6 +1,6 @@
 # API DE DADOS ESCOLARES
 
-Esta é uma API desenvolvida com propósito educacional proposta por [@luizomf](https://github.com/luizomf).
+Esta é uma API desenvolvida com propósito educacional proposta por <a href="https://github.com/luizomf" target="_blank">@luizomf</a>.
 <img src="./api.png" />
 
 ## Possibilidades da api
