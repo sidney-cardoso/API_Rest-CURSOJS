@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import { resolve } from 'path';
 
 import homeRoutes from './routes/home';
@@ -9,8 +8,6 @@ import studentRoutes from './routes/student';
 import photoRoutes from './routes/photo';
 
 import './database';
-
-dotenv.config();
 
 class App {
   constructor() {
@@ -22,7 +19,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
-    this.app.use(express.static(resolve(__dirname, 'uploads')));
+    this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
   }
 
   routes() {
