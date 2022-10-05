@@ -18,5 +18,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'arrow-parens': 'off',
     camelcase: 'off',
+    indent: 4
   },
 };

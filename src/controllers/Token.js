@@ -30,7 +30,7 @@ class TokenController {
       };
       const token = jwt.sign({ id, email }, secret, tokenExpiration);
 
-      return res.json({ token });
+      return res.json({ token, user: {name: user.name, id, email} });
     } catch (error) {
       return res.status(400).json(error.errors.map(err => err.message));
     }
