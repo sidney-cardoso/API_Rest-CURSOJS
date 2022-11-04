@@ -1,8 +1,9 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import { resolve } from 'path';
-
-import helmet from 'helmet';
 import cors from 'cors';
+// import helmet from 'helmet';
+import { delay } from 'express-delay';
 
 import homeRoutes from './routes/home';
 import userRoutes from './routes/user';
@@ -12,9 +13,9 @@ import photoRoutes from './routes/photo';
 
 import './database';
 
-const whiteList = [
-  'http://localhost:3001',
-];
+dotenv.config();
+
+const whiteList = ['http://localhost:5173'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -35,10 +36,14 @@ class App {
 
   middlewares() {
     this.app.use(cors(corsOptions));
+    // this.app.use(helmet());
+    this.app.use(delay(2000));
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(helmet());
     this.app.use(express.json());
-    this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
+    this.app.use(
+      '/images/',
+      express.static(resolve(__dirname, '..', 'uploads', 'images')),
+    );
   }
 
   routes() {
