@@ -3,7 +3,6 @@ var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
 var _path = require('path');
 var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 // import helmet from 'helmet';
-var _expressdelay = require('express-delay'); var _expressdelay2 = _interopRequireDefault(_expressdelay);
 
 var _home = require('./routes/home'); var _home2 = _interopRequireDefault(_home);
 var _user = require('./routes/user'); var _user2 = _interopRequireDefault(_user);
@@ -37,7 +36,6 @@ class App {
   middlewares() {
     this.app.use(_cors2.default.call(void 0, corsOptions));
     // this.app.use(helmet());
-    this.app.use(_expressdelay2.default.call(void 0, 2000));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
     this.app.use(

@@ -14,7 +14,10 @@ import './database';
 
 dotenv.config();
 
-const whiteList = ['http://localhost:5173'];
+const whiteList = [
+  'http://localhost:5173',
+  'https://school.sidneycardoso.tech',
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
