@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { resolve } from 'path';
 import cors from 'cors';
-// import helmet from 'helmet';
+import helmet from 'helmet';
 
 import homeRoutes from './routes/home';
 import userRoutes from './routes/user';
@@ -15,7 +15,6 @@ import './database';
 dotenv.config();
 
 const whiteList = [
-  'http://localhost:5173',
   'https://school.sidneycardoso.tech',
 ];
 
@@ -38,7 +37,7 @@ class App {
 
   middlewares() {
     this.app.use(cors(corsOptions));
-    // this.app.use(helmet());
+    this.app.use(helmet());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(

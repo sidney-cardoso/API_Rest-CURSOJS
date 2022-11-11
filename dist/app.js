@@ -2,7 +2,7 @@
 var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
 var _path = require('path');
 var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
-// import helmet from 'helmet';
+var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
 
 var _home = require('./routes/home'); var _home2 = _interopRequireDefault(_home);
 var _user = require('./routes/user'); var _user2 = _interopRequireDefault(_user);
@@ -14,7 +14,9 @@ require('./database');
 
 _dotenv2.default.config();
 
-const whiteList = ['http://localhost:5173'];
+const whiteList = [
+  'https://school.sidneycardoso.tech',
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
